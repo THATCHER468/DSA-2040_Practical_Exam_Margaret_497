@@ -31,7 +31,7 @@ This repository contains the submission for the DSA-2040 practical exam, showcas
 - `outputs/`  
   Final outputs and documentation.  
   - `screenshots/` – Screenshots of execution and results  
-  - `debug_notes.md` – Notes on troubleshooting and fixes
+  
 
 ## 🧪 Key Objectives
 
@@ -41,9 +41,13 @@ This repository contains the submission for the DSA-2040 practical exam, showcas
 - Apply clustering and Apriori analysis on Iris dataset
 - Document findings and visualize results
 
-## Task 2 
-## 🔄 ETL Pipeline
+## Task 1: Warehouse Design
+ - Designed a star schema with one fact table (SalesFact) and three dimension tables (CustomerDim, ProductDim, TimeDim).
+ - Diagram included: star_schema_diagram.png
+ - SQL schema: warehouse_schema.sql
+ - Chose star schema for simplicity and query performance over snowflake.
 
+## Task 2 ETL Pipeline
 The ETL process is implemented in `etl/etl_retail.py` and follows three main steps:
 
 1. **Extract**  
@@ -61,6 +65,15 @@ The ETL process is implemented in `etl/etl_retail.py` and follows three main ste
    - Optionally creates dimension summaries (e.g., `CustomerDim`)
 
 The synthetic data was generated using the `Faker` library and mimics the structure of the UCI Online Retail dataset. The generation script is included in the ETL folder.
+
+## Task 3: OLAP Queries
+1. Three OLAP queries implemented: 
+- Roll-up: Sales by country and quarter
+- Drill-down: Monthly sales for UK
+- Slice: Sales for electronics category
+2. SQL: olap_queries.sql
+- Visualization: Bar chart of sales by country
+- Analysis report: outputs/reports/olap_analysis.md
 
 ## Section 2: Data mining
 # Task 1 : Preprocessing the Iris Dataset
@@ -84,6 +97,29 @@ A reusable function was written to split the cleaned dataset into training and t
 
 All visualizations were saved in the datamining/visualizations/ folder, and the cleaned dataset was exported to iris_cleaned.csv.
 
+## Task 2: Clustering
+- Applied K-Means with k=3, compared with k=2 and k=4.
+- Elbow curve plotted.
+- PCA scatter plot visualized clusters.
+- Analysis included in outputs/reports/clustering_analysis.md
+- Script: clustering_iris.py
+
+## Task 3A: Classification
+- Trained Decision Tree and KNN classifiers.
+- Evaluated with accuracy, precision, recall, F1-score.
+- Tree visualized.
+- Comparison included in outputs/reports/classification_analysis.md
+- Script: mining_iris_basket.py
+
+## Task 3B: Association Rule Mining
+- Generated synthetic basket data.
+- Applied Apriori algorithm with min_support=0.2, min_confidence=0.5.
+- Top 5 rules sorted by lift.
+- Rule analysis included in outputs/reports/association_analysis.md
+- Script: mining_iris_basket.py
+
+## Self-Assessment
+I successfully completed all tasks as per the exam instructions. Each script is modular, well-commented, and error-free. Visualizations and reports are included to support analysis. I opted for synthetic data where allowed, ensuring reproducibility and realism. The GitHub repository is cleanly structured with incremental commits and clear documentation.
 
 ## 🚀 How to Run
 
@@ -103,8 +139,3 @@ python etl/etl_retail.py
 - SQL: SQLite for schema and OLAP queries
 - GitHub: Version control and collaboration
 
-## 👩‍💻 Author
-
-**Margaret**  
-Data Science student focused on applied mathematics, statistical modeling, and collaborative coding.  
-Exploring hypothesis testing, stochastic processes,
